@@ -1,7 +1,8 @@
 import Axios from "axios";
 
-const baseURL = "book-from-jun.herokuapp.com/api";
+const baseURL = "http://localhost:3000/api";
 
 export const loginAPI = ({ email, password }) => {
-  Axios.post(`${baseURL}/login`, { email, password });
+  //return a promise
+  return Axios.post(`${baseURL}/login`, { email, password });
 };

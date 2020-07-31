@@ -14,6 +14,9 @@ function App() {
           <Route exact path='/login'>
             <Login />
           </Route>
+          <Route exact path='/'>
+            {() => <div>Homepage</div>}
+          </Route>
         </Switch>
       </Router>
     </Provider>

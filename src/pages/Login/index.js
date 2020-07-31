@@ -1,15 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Form } from "semantic-ui-react";
-import { useDispatch } from "react-redux";
-import { loginAPI } from "../../api/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { loginAction } from "../../actions/auth";
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
 
+  const isLogged = useSelector(state => state.auth.isLogged);
+  let history = useHistory();
+
+  useEffect(() => {
+    if (isLogged) {
+      // check if isLogged is true => it means user is logged in
+      history.push("/"); // if user is logged => redirect to home page
+    }
+  }, [isLogged]);
+
   const submit = () => {
-    dispatch(loginAPI({ email, password }));
+    dispatch(loginAction({ email, password })); // compomnent call => action call => action call api
   };
 
   return (
